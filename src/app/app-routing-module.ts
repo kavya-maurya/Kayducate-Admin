@@ -1,0 +1,55 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AdminLayout } from './layouts/admin-layout/admin-layout';
+
+
+
+const routes: Routes = [
+ 
+
+
+  
+
+  {
+    path: '',
+    component: AdminLayout,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./features/admin/admin-module')
+            .then(m => m.AdminModule)
+      }
+       
+    ]
+  },
+
+  
+
+    
+
+ 
+  {
+    path: 'admin',
+    component: AdminLayout,
+
+    loadChildren: () =>
+      import('./features/admin/admin-module')
+        .then(m => m.AdminModule)
+  },
+
+  {
+    path: '**',
+    redirectTo: ''
+  }
+];
+
+
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { 
+  
+}
