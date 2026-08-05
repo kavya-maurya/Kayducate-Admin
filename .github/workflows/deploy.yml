@@ -20,7 +20,7 @@ jobs:
           script: |
             set -e
 
-            cd /var/www/html/Kayducate-dashboard/dist/frontend1/browser
+            cd /var/www/html/Kayducate-Admin/dist/frontend1/browser 
 
             git pull origin master
 
@@ -32,7 +32,7 @@ jobs:
       - name: Send ntfy notification
         if: success()
         run: |
-          curl -H "Title: 🚀 Kayducate dashboard Deployment" \
+          curl -H "Title: 🚀 Kayducate Admin dashboard Deployment" \
                -H "Priority: high" \
                -d "Deployment to VPS completed successfully." \
                https://ntfy.sh/kaylynk
@@ -40,7 +40,7 @@ jobs:
       - name: Send failure notification
         if: failure()
         run: |
-          curl -H "Title: ❌ Kayducate dashboard Deployment Failed" \
+          curl -H "Title: ❌ Kayducate Admin dashboard Deployment Failed" \
                -H "Priority: urgent" \
                -d "GitHub Actions deployment failed. Check the workflow logs." \
                https://ntfy.sh/kaylynk
