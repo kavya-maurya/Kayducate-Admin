@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './sidebar-admin.html',
   styleUrl: './sidebar-admin.css',
 })
-export class SidebarAdmin {}
+export class SidebarAdmin {
+  isSidebarOpen: boolean = false;
+
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar(): void {
+    this.isSidebarOpen = false;
+  }
+}
