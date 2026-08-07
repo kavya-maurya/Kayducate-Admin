@@ -1,122 +1,104 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+interface Student {
+  _id?: string;
+  name: string;
+  email: string;
+}
+
+interface Task {
+  _id: string;
+  title: string;
+  description: string;
+  subject: string;
+  priority: string;
+  status: string;
+  dueDate: string;
+  student: Student;
+}
 
 @Component({
   selector: 'app-tasks',
   standalone: false,
   templateUrl: './tasks.html',
-  styleUrl: './tasks.css',
+  styleUrl: './tasks.css'
 })
-export class Tasks {
+export class Tasks implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  tasks: Task[] = [];
+  filteredTasks: Task[] = [];
 
-    this.taskForm = this.fb.group({
+  searchText = '';
+  statusFilter = '';
+  priorityFilter = '';
 
-      title: ['', Validators.required],
+  // Change this to your backend URL if different
+  apiUrl = 'http://localhost:3000/api/tasks';
 
-      subject: ['', Validators.required],
+  constructor(
+    private http: HttpClient
+  ) {}
 
-      description: ['', Validators.required],
+  ngOnInit(): void {
+    this.loadTasks();
+  }
 
-      priority: ['', Validators.required],
+  loadTasks(): void {
 
-      status: ['', Validators.required],
+    this.http.get<any>(this.apiUrl).subscribe({
 
-      dueDate: ['', Validators.required],
+      next: (response) => {
+
+        this.tasks = response.tasks || [];
+
+        this.filteredTasks = [...this.tasks];
+
+      },
+
+      error: (error) => {
+
+        console.error('Error loading tasks:', error);
+
+      }
 
     });
 
   }
 
-  taskForm!: FormGroup;
+  filterTasks(): void {
 
-  showTaskForm = false;
+    const search = this.searchText.trim().toLowerCase();
 
-  searchText = '';
+    this.filteredTasks = this.tasks.filter(task => {
 
-  statusFilter = '';
+      const matchesSearch =
 
-  priorityFilter = '';
+        task.title.toLowerCase().includes(search) ||
 
-  editIndex: number | null = null;
+        task.subject.toLowerCase().includes(search) ||
 
-  tasks: any[] = [
-    {
-      title: 'Angular Assignment',
-      subject: 'Angular',
-      description: 'Complete CRUD Module',
-      priority: 'High',
-      status: 'Pending',
-      dueDate: new Date(),
-    },
-    {
-      title: 'DBMS Notes',
-      subject: 'Database',
-      description: 'Prepare Normalization Notes',
-      priority: 'Medium',
-      status: 'In Progress',
-      dueDate: new Date(),
-    },
-  ];
+        task.description.toLowerCase().includes(search) ||
 
-  saveTask(): void {
+        task.student?.name.toLowerCase().includes(search) ||
 
-    if (this.taskForm.invalid) {
+        task.student?.email.toLowerCase().includes(search);
 
-      this.taskForm.markAllAsTouched();
+      const matchesStatus =
 
-      return;
+        !this.statusFilter ||
 
-    }
+        task.status === this.statusFilter;
 
-    if (this.editIndex !== null) {
+      const matchesPriority =
 
-      this.tasks[this.editIndex] = this.taskForm.value;
+        !this.priorityFilter ||
 
-      this.editIndex = null;
+        task.priority === this.priorityFilter;
 
-    } else {
+      return matchesSearch && matchesStatus && matchesPriority;
 
-      this.tasks.push(this.taskForm.value);
-
-    }
-
-    this.taskForm.reset();
-
-    this.showTaskForm = false;
-
-  }
-
-  editTask(task: any): void {
-
-    this.editIndex = this.tasks.indexOf(task);
-
-    this.taskForm.patchValue(task);
-
-    this.showTaskForm = true;
-
-  }
-
-  deleteTask(task: any): void {
-
-    const index = this.tasks.indexOf(task);
-
-    if (index > -1) {
-
-      this.tasks.splice(index, 1);
-
-    }
-
-  }
-
-  closeModal(): void {
-
-    this.showTaskForm = false;
-
-    this.editIndex = null;
-
-    this.taskForm.reset();
+    });
 
   }
 

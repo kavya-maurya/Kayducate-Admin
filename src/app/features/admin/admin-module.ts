@@ -8,10 +8,11 @@ import { Courses } from './courses/courses';
 import { Attendance } from './attendance/attendance';
 import { Tasks } from './tasks/tasks';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Syllabus } from './syllabus/syllabus';
 
 
 @NgModule({
-  declarations: [Dashboard, Students, Courses, Attendance, Tasks ],
+  declarations: [Dashboard, Students, Courses, Attendance, Tasks, Syllabus ],
   imports: [CommonModule, AdminRoutingModule,ReactiveFormsModule,FormsModule],
   providers: [
     DatePipe

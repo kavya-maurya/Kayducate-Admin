@@ -1,393 +1,196 @@
-<div class="admin-tasks">
-
-  <!-- ========================= -->
-  <!-- PAGE HEADER -->
-  <!-- ========================= -->
-
-  <div class="page-header">
+<div class="page-header">
 
     <div class="header-content">
 
-      <span class="page-label">
-        Task Management
-      </span>
+        <span class="page-label">
+            Student Tasks
+        </span>
 
-      <h1>Manage Student Tasks</h1>
+        <h1>All Student Tasks</h1>
 
-      <p>
-        Create, assign and monitor academic tasks across all students from one dashboard.
-      </p>
-
-    </div>
-
-    <div class="header-actions">
-
-      <button
-        class="secondary-btn"
-        type="button">
-
-        <i class="fa-solid fa-download"></i>
-        Export
-
-      </button>
-
-      <button
-        class="primary-btn"
-        type="button"
-        (click)="showTaskForm=true">
-
-        <i class="fa-solid fa-plus"></i>
-        Create Task
-
-      </button>
+        <p>
+            View and monitor all tasks submitted by students.
+        </p>
 
     </div>
 
-  </div>
+</div>
 
-  <!-- ========================= -->
-  <!-- TOOLBAR -->
-  <!-- ========================= -->
-
-  <div class="toolbar">
+<div class="toolbar">
 
     <div class="search-box">
 
-      <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-magnifying-glass"></i>
 
-      <input
-        type="text"
-        placeholder="Search tasks..."
-        [(ngModel)]="searchText">
+        <input
+            type="text"
+            placeholder="Search student, subject or task..."
+            [(ngModel)]="searchText"
+            (input)="filterTasks()">
 
     </div>
 
     <div class="toolbar-right">
 
-      <select [(ngModel)]="statusFilter">
+        <select
+            [(ngModel)]="statusFilter"
+            (change)="filterTasks()">
 
-        <option value="">All Status</option>
+            <option value="">All Status</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
 
-        <option value="Pending">
-          Pending
-        </option>
+        </select>
 
-        <option value="In Progress">
-          In Progress
-        </option>
+        <select
+            [(ngModel)]="priorityFilter"
+            (change)="filterTasks()">
 
-        <option value="Completed">
-          Completed
-        </option>
+            <option value="">All Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
 
-      </select>
+        </select>
 
-      <select [(ngModel)]="priorityFilter">
+        <div class="task-count">
 
-        <option value="">All Priority</option>
+            {{filteredTasks.length}} Tasks
 
-        <option value="Low">
-          Low
-        </option>
-
-        <option value="Medium">
-          Medium
-        </option>
-
-        <option value="High">
-          High
-        </option>
-
-      </select>
-
-      <div class="task-count">
-
-        {{tasks.length}} Tasks
-
-      </div>
+        </div>
 
     </div>
 
-  </div>
+</div>
 
-  <!-- ========================= -->
-  <!-- TASK TABLE -->
-  <!-- ========================= -->
-
-  <div class="table-card">
+<div class="table-card">
 
     <table>
 
-      <thead>
+        <thead>
 
-        <tr>
+            <tr>
 
-          <th>Task</th>
+                <th>Student</th>
+                <th>Task</th>
+                <th>Subject</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Due Date</th>
 
-          <th>Subject</th>
+            </tr>
 
-          <th>Priority</th>
+        </thead>
 
-          <th>Status</th>
+        <tbody>
 
-          <th>Due Date</th>
+            <tr *ngFor="let task of filteredTasks">
 
-          <th>Actions</th>
+                <td>
 
-        </tr>
+                    <div class="student-info">
 
-      </thead>
+                        <strong>
 
-      <tbody>
+                            {{task.student?.name}}
 
-        <tr *ngFor="let task of tasks">
+                        </strong>
 
-          <td>
+                        <small>
 
-            <div class="task-info">
+                            {{task.student?.email}}
 
-              <div class="task-icon">
+                        </small>
 
-                <i class="fa-solid fa-list-check"></i>
+                    </div>
 
-              </div>
+                </td>
 
-              <div>
+                <td>
 
-                <h4>{{task.title}}</h4>
+                    <div class="task-info">
 
-                <small>{{task.description}}</small>
+                        <div class="task-icon">
 
-              </div>
+                            <i class="fa-solid fa-list-check"></i>
 
-            </div>
+                        </div>
 
-          </td>
+                        <div>
 
-          <td>{{task.subject}}</td>
-                    <td>
+                            <h4>
 
-            <span
-              class="priority"
-              [ngClass]="task.priority.toLowerCase()">
+                                {{task.title}}
 
-              {{task.priority}}
+                            </h4>
 
-            </span>
+                            <small>
 
-          </td>
+                                {{task.description}}
 
-          <td>
+                            </small>
 
-            <span
-              class="status"
-              [ngClass]="task.status.toLowerCase().replace(' ','-')">
+                        </div>
 
-              {{task.status}}
+                    </div>
 
-            </span>
+                </td>
 
-          </td>
+                <td>
 
-          <td>
+                    {{task.subject}}
 
-            {{task.dueDate | date:'dd MMM yyyy'}}
+                </td>
 
-          </td>
+                <td>
 
-          <td>
+                    <span
+                        class="priority"
+                        [ngClass]="task.priority.toLowerCase()">
 
-            <div class="action-buttons">
+                        {{task.priority}}
 
-              <button
-                type="button"
-                (click)="editTask(task)">
+                    </span>
 
-                <i class="fa-solid fa-pen"></i>
+                </td>
 
-              </button>
+                <td>
 
-              <button
-                type="button"
-                (click)="deleteTask(task)">
+                    <span
+                        class="status"
+                        [ngClass]="task.status.toLowerCase().replace(' ','-')">
 
-                <i class="fa-solid fa-trash"></i>
+                        {{task.status}}
 
-              </button>
+                    </span>
 
-            </div>
+                </td>
 
-          </td>
+                <td>
 
-        </tr>
+                    {{task.dueDate | date:'dd MMM yyyy'}}
 
-      </tbody>
+                </td>
+
+            </tr>
+
+        </tbody>
 
     </table>
 
-    <div
-      class="empty-state"
-      *ngIf="tasks.length===0">
+</div>
 
-      <i class="fa-solid fa-list-check"></i>
+<div
+    class="empty-state"
+    *ngIf="filteredTasks.length===0">
 
-      <h3>No Tasks Found</h3>
+    <i class="fa-solid fa-list-check"></i>
 
-      <p>
-        Create your first task to begin managing student assignments.
-      </p>
+    <h3>
 
-      <button
-        class="primary-btn"
-        type="button"
-        (click)="showTaskForm=true">
+        No Tasks Found
 
-        Create Task
-
-      </button>
-
-    </div>
-
-  </div>
-
-  <!-- ========================= -->
-  <!-- TASK MODAL -->
-  <!-- ========================= -->
-
-  <div
-    class="task-modal"
-    *ngIf="showTaskForm">
-
-    <div class="modal-card">
-
-      <div class="modal-header">
-
-        <h2>Task Details</h2>
-
-        <button
-          class="close-btn"
-          type="button"
-          (click)="showTaskForm=false">
-
-          <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-      </div>
-
-      <form
-        [formGroup]="taskForm"
-        (ngSubmit)="saveTask()">
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label>Task Title</label>
-
-            <input
-              type="text"
-              formControlName="title"
-              placeholder="Enter task title">
-
-          </div>
-
-          <div class="form-group">
-
-            <label>Subject</label>
-
-            <input
-              type="text"
-              formControlName="subject"
-              placeholder="Subject">
-
-          </div>
-
-          <div class="form-group full-width">
-
-            <label>Description</label>
-
-            <textarea
-              rows="4"
-              formControlName="description"
-              placeholder="Task description"></textarea>
-
-          </div>
-                    <div class="form-group">
-
-            <label>Priority</label>
-
-            <select formControlName="priority">
-
-              <option value="">Select Priority</option>
-
-              <option value="Low">Low</option>
-
-              <option value="Medium">Medium</option>
-
-              <option value="High">High</option>
-
-            </select>
-
-          </div>
-
-          <div class="form-group">
-
-            <label>Status</label>
-
-            <select formControlName="status">
-
-              <option value="">Select Status</option>
-
-              <option value="Pending">Pending</option>
-
-              <option value="In Progress">In Progress</option>
-
-              <option value="Completed">Completed</option>
-
-            </select>
-
-          </div>
-
-          <div class="form-group full-width">
-
-            <label>Due Date</label>
-
-            <input
-              type="date"
-              formControlName="dueDate">
-
-          </div>
-
-        </div>
-
-        <div class="form-footer">
-
-          <button
-            class="secondary-btn"
-            type="button"
-            (click)="showTaskForm=false">
-
-            Cancel
-
-          </button>
-
-          <button
-            class="primary-btn"
-            type="submit">
-
-            <i class="fa-solid fa-floppy-disk"></i>
-
-            Save Task
-
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
-  </div>
+    </h3>
 
 </div>
