@@ -1,1140 +1,1122 @@
 /* ==========================================================
-   KAYDUCATE ADMIN
-   TASKS PAGE
-   PART 1
+TASK MANAGEMENT PAGE
+Responsive: Laptop + Tablet + Mobile
 ========================================================== */
 
-.admin-tasks{
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-    width:100%;
+:host {
+display: block;
+width: 100%;
+max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  }
+
+/* ==========================================================
+PAGE HEADER
+========================================================== */
+
+.header-content {
+width: 100%;
+
+
+display: flex;
+flex-direction: column;
+
+gap: 8px;
+
+margin-bottom: 24px;
+
+
+}
+
+.page-label {
+display: inline-flex;
+align-items: center;
+
+
+width: max-content;
+
+padding: 5px 11px;
+
+background: #E8E9FF;
+color: #5B54D6;
+
+border-radius: 5px;
+
+font-size: 11px;
+font-weight: 600;
+
+text-transform: uppercase;
+letter-spacing: .5px;
+
+
+}
+
+.header-content h1 {
+margin: 0;
+
+
+color: #1F2937;
+
+font-size: clamp(22px, 2.2vw, 30px);
+font-weight: 700;
+
+line-height: 1.3;
+
+
+}
+
+.header-content p {
+max-width: 700px;
+
+
+margin: 0;
+
+color: #6B7280;
+
+font-size: 14px;
+line-height: 1.6;
+
+
 }
 
 /* ==========================================================
-   PAGE HEADER
+HEADER BUTTON
 ========================================================== */
 
-.page-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:24px;
-    flex-wrap:wrap;
+.header-content .btn {
+width: max-content;
+
+
+height: 40px;
+
+margin-top: 5px;
+
+padding: 0 17px;
+
+border: none;
+border-radius: 6px;
+
+background: #635BFF;
+color: #FFFFFF;
+
+font-size: 13px;
+font-weight: 600;
+
+cursor: pointer;
+
+transition:
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+
+
 }
 
-.header-content{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
+.header-content .btn:hover {
+background: #554DEB;
 
-.page-label{
-    display:inline-flex;
-    align-items:center;
-    width:max-content;
-    padding:5px 12px;
-    background:#EEF2FF;
-    color:#635BFF;
-    font-size:12px;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.6px;
-}
 
-.header-content h1{
-    margin:0;
-    font-size:30px;
-    font-weight:700;
-    color:#111827;
-    line-height:1.3;
-}
+transform: translateY(-1px);
 
-.header-content p{
-    margin:0;
-    max-width:650px;
-    font-size:14px;
-    color:#6B7280;
-    line-height:1.7;
-}
+box-shadow: 0 5px 14px rgba(99, 91, 255, .18);
 
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    flex-wrap:wrap;
+
 }
 
 /* ==========================================================
-   BUTTONS
+TOOLBAR
 ========================================================== */
 
-.primary-btn,
-.secondary-btn{
-    height:44px;
-    padding:0 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    border:1px solid transparent;
-    cursor:pointer;
-    font-size:14px;
-    font-weight:600;
-    transition:.25s;
-}
+.toolbar {
+width: 100%;
 
-.primary-btn{
-    background:#635BFF;
-    color:#fff;
-}
 
-.primary-btn:hover{
-    background:#564EF0;
-}
+display: flex;
+align-items: center;
+justify-content: space-between;
 
-.secondary-btn{
-    background:#fff;
-    border-color:#D1D5DB;
-    color:#374151;
-}
+gap: 18px;
 
-.secondary-btn:hover{
-    background:#F8FAFC;
+padding: 14px 16px;
+
+margin-bottom: 18px;
+
+background: #F5F6F9;
+
+border: 1px solid #E1E4EA;
+
+border-radius: 8px;
+
+
 }
 
 /* ==========================================================
+SEARCH
+========================================================== */
+
+.search-box {
+width: min(380px, 100%);
+height: 42px;
+
+
+flex-shrink: 1;
+
+display: flex;
+align-items: center;
+
+gap: 10px;
+
+padding: 0 13px;
+
+background: #FFFFFF;
+
+border: 1px solid #D9DDE4;
+
+border-radius: 6px;
+
+transition: .2s ease;
+
+
+}
+
+.search-box i {
+flex-shrink: 0;
+
+
+color: #9CA3AF;
+
+font-size: 13px;
+
+
+}
+
+.search-box input {
+width: 100%;
+min-width: 0;
+
+
+padding: 0;
+
+border: none;
+outline: none;
+
+background: transparent;
+
+color: #1F2937;
+
+font-size: 13px;
+
+
+}
+
+.search-box input::placeholder {
+color: #9CA3AF;
+}
+
+.search-box:focus-within {
+border-color: #635BFF;
+
+
+box-shadow:
+    0 0 0 3px rgba(99, 91, 255, .08);
+
+
+}
+
+/* ==========================================================
+RIGHT TOOLBAR
+========================================================== */
+
+.toolbar-right {
+display: flex;
+align-items: center;
+
+
+gap: 9px;
+
+flex-wrap: wrap;
+
+
+}
+
+.toolbar-right select {
+width: 145px;
+height: 42px;
+
+
+padding: 0 11px;
+
+background: #FFFFFF;
+
+border: 1px solid #D9DDE4;
+
+border-radius: 6px;
+
+color: #374151;
+
+font-size: 12px;
+
+outline: none;
+
+cursor: pointer;
+
+transition: .2s ease;
+
+
+}
+
+.toolbar-right select:hover {
+border-color: #B9BEC8;
+}
+
+.toolbar-right select:focus {
+border-color: #635BFF;
+
+
+box-shadow:
+    0 0 0 3px rgba(99, 91, 255, .07);
+
+
+}
+
+/* ==========================================================
+TASK COUNT
+========================================================== */
+
+.task-count {
+min-width: 85px;
+height: 40px;
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding: 0 12px;
+
+background: #E9EBF0;
+
+border-radius: 6px;
+
+color: #59616D;
+
+font-size: 12px;
+font-weight: 600;
+
+white-space: nowrap;
+
+
+}
+
+/* ==========================================================
+TABLE WRAPPER
+========================================================== */
+
+.table-card {
+width: 100%;
+max-width: 100%;
+
+
+overflow-x: auto;
+overflow-y: hidden;
+
+background: #F8F9FB;
+
+border: 1px solid #E1E4EA;
+
+border-radius: 8px;
+
+box-shadow:
+    0 4px 16px rgba(15, 23, 42, .035);
+
+/* Smooth scrolling on phones */
+-webkit-overflow-scrolling: touch;
+
+/* Firefox */
+scrollbar-width: thin;
+scrollbar-color: #B8BDC7 #E9EBEF;
+
+
+}
+
+/* ==========================================================
+TABLE
+========================================================== */
+
+.table-card table {
+width: 100%;
+
+
+/*
+   On large screens the table fills the available space.
+   On small screens this creates horizontal scrolling.
+*/
+min-width: 900px;
+
+border-collapse: collapse;
+
+table-layout: auto;
+
+
+}
+
+/* ==========================================================
+TABLE HEADER
+========================================================== */
+
+.table-card thead {
+background: #EEF0F4;
+}
+
+.table-card th {
+height: 52px;
+
+
+padding: 0 18px;
+
+text-align: left;
+
+color: #68707D;
+
+font-size: 10px;
+font-weight: 700;
+
+text-transform: uppercase;
+letter-spacing: .5px;
+
+white-space: nowrap;
+
+border-bottom: 1px solid #DDE1E7;
+
+
+}
+
+/* ==========================================================
+TABLE BODY
+========================================================== */
+
+.table-card td {
+padding: 15px 18px;
+
+
+background: #F8F9FB;
+
+color: #374151;
+
+font-size: 12px;
+
+vertical-align: middle;
+
+border-bottom: 1px solid #E7E9EE;
+
+
+}
+
+.table-card tbody tr {
+transition: background .15s ease;
+}
+
+.table-card tbody tr:hover td {
+background: #F1F2F6;
+}
+
+.table-card tbody tr:last-child td {
+border-bottom: none;
+}
+
+/* ==========================================================
+STUDENT INFORMATION
+========================================================== */
+
+.student-info {
+min-width: 150px;
+
+
+display: flex;
+flex-direction: column;
+
+gap: 4px;
+
+
+}
+
+.student-info strong {
+color: #252B35;
+
+
+font-size: 12px;
+font-weight: 600;
+
+white-space: nowrap;
+
+
+}
+
+.student-info small {
+color: #8A919D;
+
+
+font-size: 10px;
+
+white-space: nowrap;
+
+
+}
+
+/* ==========================================================
+TASK INFORMATION
+========================================================== */
+
+.task-info {
+min-width: 220px;
+
+
+display: flex;
+align-items: center;
+
+gap: 10px;
+
+
+}
+
+.task-icon {
+width: 38px;
+height: 38px;
+
+
+flex-shrink: 0;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+background: #E8E9FF;
+
+color: #635BFF;
+
+border-radius: 7px;
+
+font-size: 14px;
+
+
+}
+
+.task-info h4 {
+margin: 0;
+
+
+color: #252B35;
+
+font-size: 12px;
+font-weight: 600;
+
+white-space: nowrap;
+
+
+}
+
+.task-info small {
+display: block;
+
+
+max-width: 240px;
+
+margin-top: 4px;
+
+overflow: hidden;
+
+text-overflow: ellipsis;
+
+white-space: nowrap;
+
+color: #9298A3;
+
+font-size: 10px;
+
+
+}
+
+/* ==========================================================
+PRIORITY BADGES
+========================================================== */
+
+.priority {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+
+min-width: 68px;
+height: 26px;
+
+padding: 0 9px;
+
+border-radius: 5px;
+
+font-size: 10px;
+font-weight: 600;
+
+white-space: nowrap;
+
+
+}
+
+.priority.low {
+background: #E8F5ED;
+color: #24804A;
+}
+
+.priority.medium {
+background: #FFF3D8;
+color: #A66B08;
+}
+
+.priority.high {
+background: #FCE7E7;
+color: #C63E45;
+}
+
+/* ==========================================================
+STATUS BADGES
+========================================================== */
+
+.status {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+
+min-width: 90px;
+height: 26px;
+
+padding: 0 10px;
+
+border-radius: 5px;
+
+font-size: 10px;
+font-weight: 600;
+
+white-space: nowrap;
+
+
+}
+
+.status.pending {
+background: #E9EBEF;
+color: #69717C;
+}
+
+.status.in-progress {
+background: #E2E8FF;
+color: #4D5AC7;
+}
+
+.status.completed {
+background: #E4F4E9;
+color: #247A45;
+}
+
+/* ==========================================================
+TABLE SCROLLBAR
+========================================================== */
+
+.table-card::-webkit-scrollbar {
+height: 8px;
+}
+
+.table-card::-webkit-scrollbar-track {
+background: #E9EBEF;
+
+
+border-radius: 10px;
+
+
+}
+
+.table-card::-webkit-scrollbar-thumb {
+background: #B8BDC7;
+
+
+border-radius: 10px;
+
+
+}
+
+.table-card::-webkit-scrollbar-thumb:hover {
+background: #969DA8;
+}
+
+/* ==========================================================
+EMPTY STATE
+========================================================== */
+
+.empty-state {
+width: 100%;
+
+
+min-height: 250px;
+
+display: flex;
+flex-direction: column;
+
+align-items: center;
+justify-content: center;
+
+padding: 40px 20px;
+
+background: #F5F6F9;
+
+border: 1px solid #E1E4EA;
+
+border-radius: 8px;
+
+text-align: center;
+
+
+}
+
+.empty-state i {
+width: 52px;
+height: 52px;
+
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+margin-bottom: 14px;
+
+background: #E8E9FF;
+
+color: #635BFF;
+
+border-radius: 9px;
+
+font-size: 20px;
+
+
+}
+
+.empty-state h3 {
+margin: 0;
+
+
+color: #303641;
+
+font-size: 16px;
+font-weight: 600;
+
+
+}
+
+.empty-state p {
+margin: 7px 0 0;
+
+
+color: #8B919C;
+
+font-size: 12px;
+
+
+}
+
+/* ==========================================================
+LAPTOP / DESKTOP
+========================================================== */
+
+@media (min-width: 1200px) {
+
+
+.toolbar {
+    padding: 15px 18px;
+}
+
+.table-card th {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.table-card td {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+}
+
+/* ==========================================================
+TABLET
+========================================================== */
+
+@media (max-width: 992px) {
+
+
+.toolbar {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 100%;
+}
+
+.toolbar-right {
+    width: 100%;
+}
+
+.toolbar-right select {
+    flex: 1;
+
+    width: auto;
+    min-width: 0;
+}
+
+.task-count {
+    margin-left: auto;
+}
+
+
+}
+
+/* ==========================================================
+PHONE
+========================================================== */
+
+@media (max-width: 768px) {
+
+
+.header-content {
+    margin-bottom: 18px;
+}
+
+.page-label {
+    padding: 4px 9px;
+
+    font-size: 9px;
+}
+
+.header-content h1 {
+    font-size: 22px;
+}
+
+.header-content p {
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* --------------------------
+   BUTTON
+-------------------------- */
+
+.header-content .btn {
+    width: 100%;
+
+    height: 40px;
+
+    margin-top: 4px;
+
+    font-size: 12px;
+}
+
+
+/* --------------------------
    TOOLBAR
-========================================================== */
+-------------------------- */
 
-.toolbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    padding:18px 22px;
-    background:#fff;
-    border:1px solid #E5E7EB;
+.toolbar {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 14px;
+
+    gap: 10px;
+
+    border-radius: 7px;
 }
 
-.toolbar-right{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    flex-wrap:wrap;
-}
 
-/* ==========================================================
+/* --------------------------
    SEARCH
-========================================================== */
+-------------------------- */
 
-.search-box{
-    width:360px;
-    max-width:100%;
-    height:46px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:0 16px;
-    border:1px solid #D1D5DB;
-    background:#fff;
-    transition:.25s;
+.search-box {
+    height: 40px;
+
+    padding: 0 11px;
 }
 
-.search-box:hover{
-    border-color:#9CA3AF;
+.search-box input {
+    font-size: 11px;
 }
 
-.search-box:focus-within{
-    border-color:#635BFF;
-}
 
-.search-box i{
-    color:#9CA3AF;
-    font-size:14px;
-}
-
-.search-box input{
-    flex:1;
-    border:none;
-    outline:none;
-    background:transparent;
-    font-size:14px;
-    color:#111827;
-}
-
-.search-box input::placeholder{
-    color:#9CA3AF;
-}
-
-/* ==========================================================
+/* --------------------------
    FILTERS
-========================================================== */
+-------------------------- */
 
-.toolbar select{
-    min-width:170px;
-    height:46px;
-    padding:0 14px;
-    border:1px solid #D1D5DB;
-    background:#fff;
-    font-size:14px;
-    color:#374151;
-    outline:none;
-    cursor:pointer;
-    transition:.25s;
+.toolbar-right {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 7px;
 }
 
-.toolbar select:hover{
-    border-color:#9CA3AF;
+.toolbar-right select {
+    width: 100%;
+
+    height: 39px;
+
+    padding: 0 8px;
+
+    font-size: 11px;
 }
 
-.toolbar select:focus{
-    border-color:#635BFF;
+.task-count {
+    width: 100%;
+
+    height: 38px;
+
+    grid-column: 1 / -1;
+
+    margin: 0;
+
+    font-size: 11px;
 }
 
-/* ==========================================================
-   TOTAL TASKS
-========================================================== */
 
-.task-count{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    min-width:120px;
-    height:42px;
-    padding:0 16px;
-    background:#F3F4F6;
-    font-size:13px;
-    font-weight:600;
-    color:#4B5563;
+/* --------------------------
+   TABLE
+-------------------------- */
+
+.table-card {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 7px;
 }
 
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
-
-@media(max-width:992px){
-
-.page-header{
-    flex-direction:column;
+.table-card table {
+    /*
+       Important:
+       DO NOT reduce this.
+       This keeps the table readable and allows
+       horizontal swiping on the phone.
+    */
+    min-width: 900px;
 }
 
-.header-actions{
-    width:100%;
+.table-card th {
+    height: 46px;
+
+    padding: 0 13px;
+
+    font-size: 9px;
 }
 
+.table-card td {
+    padding: 12px 13px;
+
+    font-size: 11px;
 }
 
-@media(max-width:768px){
 
-.toolbar{
-    flex-direction:column;
-    align-items:stretch;
+/* --------------------------
+   STUDENT
+-------------------------- */
+
+.student-info {
+    min-width: 140px;
 }
 
-.search-box{
-    width:100%;
+.student-info strong {
+    font-size: 11px;
 }
 
-.toolbar-right{
-    width:100%;
-    flex-direction:column;
-    align-items:stretch;
+.student-info small {
+    font-size: 9px;
 }
 
-.toolbar select,
-.task-count,
-.primary-btn,
-.secondary-btn{
-    width:100%;
+
+/* --------------------------
+   TASK
+-------------------------- */
+
+.task-info {
+    min-width: 210px;
+
+    gap: 8px;
 }
 
+.task-icon {
+    width: 34px;
+    height: 34px;
+
+    font-size: 12px;
 }
 
-@media(max-width:576px){
-
-.header-content h1{
-    font-size:24px;
+.task-info h4 {
+    font-size: 11px;
 }
 
-.header-content p{
-    font-size:13px;
+.task-info small {
+    max-width: 190px;
+
+    font-size: 9px;
 }
 
-}
-/* ==========================================================
-   TASK TABLE
-   PART 2
-========================================================== */
 
-.table-card{
-    background:#FFFFFF;
-    border:1px solid #E5E7EB;
-    overflow-x:auto;
-}
-
-.table-card table{
-    width:100%;
-    min-width:950px;
-    border-collapse:collapse;
-}
-
-.table-card thead{
-    background:#F8FAFC;
-}
-
-.table-card th{
-    padding:18px 22px;
-    text-align:left;
-    font-size:13px;
-    font-weight:600;
-    color:#6B7280;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-    border-bottom:1px solid #E5E7EB;
-}
-
-.table-card td{
-    padding:18px 22px;
-    border-bottom:1px solid #EEF2F7;
-    vertical-align:middle;
-    font-size:14px;
-    color:#374151;
-}
-
-.table-card tbody tr{
-    transition:.25s ease;
-}
-
-.table-card tbody tr:hover{
-    background:#FAFBFD;
-}
-
-.table-card tbody tr:last-child td{
-    border-bottom:none;
-}
-
-/* ==========================================================
-   TASK INFO
-========================================================== */
-
-.task-info{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.task-icon{
-    width:44px;
-    height:44px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#EEF2FF;
-    color:#635BFF;
-    flex-shrink:0;
-}
-
-.task-info h4{
-    margin:0;
-    font-size:14px;
-    font-weight:600;
-    color:#111827;
-}
-
-.task-info small{
-    display:block;
-    margin-top:4px;
-    color:#9CA3AF;
-    font-size:12px;
-    line-height:1.5;
-}
-
-/* ==========================================================
-   PRIORITY BADGES
-========================================================== */
-
-.priority{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:90px;
-    height:30px;
-    padding:0 14px;
-    font-size:12px;
-    font-weight:600;
-}
-
-.priority.low{
-    background:#ECFDF3;
-    color:#15803D;
-}
-
-.priority.medium{
-    background:#FEF3C7;
-    color:#B45309;
-}
-
-.priority.high{
-    background:#FEE2E2;
-    color:#DC2626;
-}
-
-/* ==========================================================
-   STATUS BADGES
-========================================================== */
-
-.status{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:110px;
-    height:30px;
-    padding:0 14px;
-    font-size:12px;
-    font-weight:600;
-}
-
-.status.pending{
-    background:#F3F4F6;
-    color:#6B7280;
-}
-
-.status.in-progress{
-    background:#DBEAFE;
-    color:#2563EB;
-}
-
-.status.completed{
-    background:#DCFCE7;
-    color:#15803D;
-}
-
-/* ==========================================================
-   ACTION BUTTONS
-========================================================== */
-
-.action-buttons{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.action-buttons button{
-    width:38px;
-    height:38px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border:1px solid #E5E7EB;
-    background:#FFFFFF;
-    color:#6B7280;
-    cursor:pointer;
-    transition:.25s ease;
-}
-
-.action-buttons button:hover{
-    border-color:#635BFF;
-    color:#635BFF;
-    background:#F8FAFF;
-}
-
-.action-buttons button:last-child:hover{
-    border-color:#EF4444;
-    color:#EF4444;
-    background:#FEF2F2;
-}
-
-/* ==========================================================
-   EMPTY STATE
-========================================================== */
-
-.empty-state{
-    padding:70px 20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.empty-state i{
-    font-size:46px;
-    color:#CBD5E1;
-    margin-bottom:18px;
-}
-
-.empty-state h3{
-    margin:0;
-    font-size:22px;
-    color:#111827;
-}
-
-.empty-state p{
-    margin:14px 0 26px;
-    max-width:420px;
-    font-size:14px;
-    color:#6B7280;
-    line-height:1.7;
-}
-
-/* ==========================================================
-   SCROLLBAR
-========================================================== */
-
-.table-card::-webkit-scrollbar{
-    height:8px;
-}
-
-.table-card::-webkit-scrollbar-track{
-    background:#F3F4F6;
-}
-
-.table-card::-webkit-scrollbar-thumb{
-    background:#CBD5E1;
-}
-
-.table-card::-webkit-scrollbar-thumb:hover{
-    background:#94A3B8;
-}
-
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
-
-@media(max-width:768px){
-
-.table-card th,
-.table-card td{
-    padding:16px;
-}
-
-.task-icon{
-    width:40px;
-    height:40px;
-}
-
-.task-info h4{
-    font-size:13px;
-}
-
-.action-buttons button{
-    width:34px;
-    height:34px;
-}
+/* --------------------------
+   BADGES
+-------------------------- */
 
 .priority,
-.status{
-    min-width:80px;
-    font-size:11px;
+.status {
+    height: 24px;
+
+    padding: 0 8px;
+
+    font-size: 9px;
 }
 
-}
-/* ==========================================================
-   TASK MODAL
-========================================================== */
-
-.task-modal{
-    position:fixed;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px;
-    background:rgba(15,23,42,.45);
-    backdrop-filter:blur(6px);
-    z-index:1000;
-    overflow:auto;
-}
-
-/* ==========================================================
-   MODAL CARD
-========================================================== */
-
-.modal-card{
-    width:100%;
-    max-width:760px;
-    background:#FFFFFF;
-    border:1px solid #E5E7EB;
-    animation:modalOpen .25s ease;
-}
-
-@keyframes modalOpen{
-
-    from{
-        opacity:0;
-        transform:translateY(18px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
 
 }
 
 /* ==========================================================
-   MODAL HEADER
+SMALL PHONE
 ========================================================== */
 
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:22px 28px;
-    border-bottom:1px solid #E5E7EB;
+@media (max-width: 480px) {
+
+
+.header-content h1 {
+    font-size: 20px;
 }
 
-.modal-header h2{
-    margin:0;
-    font-size:22px;
-    font-weight:600;
-    color:#111827;
+.header-content p {
+    font-size: 11px;
 }
 
-.close-btn{
-    width:42px;
-    height:42px;
-    border:1px solid #E5E7EB;
-    background:#FFFFFF;
-    color:#6B7280;
-    cursor:pointer;
-    transition:.25s;
+
+/* Toolbar */
+
+.toolbar {
+    padding: 10px;
+
+    border-radius: 6px;
 }
 
-.close-btn:hover{
-    background:#F8FAFC;
-    color:#111827;
+
+/* Search */
+
+.search-box {
+    height: 38px;
+
+    padding: 0 10px;
 }
 
-/* ==========================================================
-   FORM
-========================================================== */
-
-.modal-card form{
-    padding:28px;
+.search-box i {
+    font-size: 11px;
 }
 
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:22px;
+.search-box input {
+    font-size: 10.5px;
 }
 
-.form-group{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
+
+/* Filters */
+
+.toolbar-right {
+    grid-template-columns: 1fr;
 }
 
-.full-width{
-    grid-column:1/-1;
+.toolbar-right select {
+    height: 38px;
+
+    font-size: 10.5px;
 }
 
-.form-group label{
-    font-size:13px;
-    font-weight:600;
-    color:#374151;
+.task-count {
+    grid-column: auto;
+
+    height: 37px;
 }
 
-/* ==========================================================
-   INPUTS
-========================================================== */
 
-.form-group input,
-.form-group select,
-.form-group textarea{
+/* Table */
 
-    width:100%;
-    padding:13px 14px;
-
-    border:1px solid #D1D5DB;
-
-    background:#FFFFFF;
-
-    font-size:14px;
-
-    color:#111827;
-
-    outline:none;
-
-    transition:.25s;
-
-    box-sizing:border-box;
-
+.table-card {
+    border-radius: 6px;
 }
 
-.form-group textarea{
-
-    resize:vertical;
-
-    min-height:120px;
-
+.table-card table {
+    min-width: 880px;
 }
 
-.form-group input::placeholder,
-.form-group textarea::placeholder{
 
-    color:#9CA3AF;
+/* Empty */
 
+.empty-state {
+    min-height: 210px;
+
+    padding: 30px 15px;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
+.empty-state i {
+    width: 46px;
+    height: 46px;
 
-    border-color:#635BFF;
+    font-size: 18px;
+}
+
+.empty-state h3 {
+    font-size: 15px;
+}
+
+.empty-state p {
+    font-size: 11px;
+}
+
 
 }
 
 /* ==========================================================
-   VALIDATION
+VERY SMALL PHONE
 ========================================================== */
 
-input.ng-invalid.ng-touched,
-select.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-touched{
+@media (max-width: 360px) {
 
-    border-color:#EF4444;
 
+.header-content h1 {
+    font-size: 19px;
 }
 
-input.ng-valid.ng-touched,
-select.ng-valid.ng-touched,
-textarea.ng-valid.ng-touched{
-
-    border-color:#10B981;
-
+.header-content p {
+    font-size: 10.5px;
 }
 
-/* ==========================================================
-   FORM FOOTER
-========================================================== */
-
-.form-footer{
-
-    display:flex;
-    justify-content:flex-end;
-    gap:14px;
-
-    margin-top:30px;
-
-    padding-top:22px;
-
-    border-top:1px solid #E5E7EB;
-
+.toolbar {
+    padding: 9px;
 }
 
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
-
-@media(max-width:768px){
-
-.task-modal{
-
-    padding:18px;
-
-    align-items:flex-start;
-
+.table-card table {
+    min-width: 850px;
 }
 
-.modal-card{
-
-    margin:20px 0;
-
-}
-
-.modal-header{
-
-    padding:18px;
-
-}
-
-.modal-card form{
-
-    padding:18px;
-
-}
-
-.form-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.form-footer{
-
-    flex-direction:column-reverse;
-
-}
-
-.form-footer button{
-
-    width:100%;
-
-}
-
-}
-/* ==========================================================
-   FINAL POLISH
-========================================================== */
-
-*{
-    box-sizing:border-box;
-}
-
-/* ==========================================================
-   TRANSITIONS
-========================================================== */
-
-.table-card,
-.modal-card,
-.primary-btn,
-.secondary-btn,
-.search-box,
-.action-buttons button,
-.close-btn,
-.form-group input,
-.form-group select,
-.form-group textarea{
-
-    transition:
-    background .25s ease,
-    color .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease,
-    transform .25s ease;
-
-}
-
-/* ==========================================================
-   CARD HOVER
-========================================================== */
-
-.table-card:hover{
-
-    box-shadow:0 10px 24px rgba(15,23,42,.05);
-
-}
-
-.modal-card{
-
-    box-shadow:0 24px 60px rgba(15,23,42,.18);
-
-}
-
-/* ==========================================================
-   BUTTON STATES
-========================================================== */
-
-.primary-btn:hover{
-
-    transform:translateY(-1px);
-
-}
-
-.secondary-btn:hover,
-.action-buttons button:hover,
-.close-btn:hover{
-
-    transform:translateY(-1px);
-
-}
-
-button:active{
-
-    transform:scale(.98);
-
-}
-
-/* ==========================================================
-   TABLE EFFECTS
-========================================================== */
-
-tbody tr{
-
-    transition:background .25s ease;
-
-}
-
-tbody tr:hover{
-
-    background:#FAFBFC;
-
-}
-
-.task-info{
-
-    transition:transform .25s ease;
-
-}
-
-tbody tr:hover .task-info{
-
-    transform:translateX(4px);
-
-}
-
-/* ==========================================================
-   INPUT EFFECTS
-========================================================== */
-
-.form-group input:hover,
-.form-group select:hover,
-.form-group textarea:hover{
-
-    border-color:#9CA3AF;
-
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-
-    box-shadow:0 0 0 3px rgba(99,91,255,.12);
-
-}
-
-/* ==========================================================
-   DISABLED
-========================================================== */
-
-input:disabled,
-select:disabled,
-textarea:disabled{
-
-    background:#F3F4F6;
-    color:#9CA3AF;
-    cursor:not-allowed;
-
-}
-
-/* ==========================================================
-   SCROLLBAR
-========================================================== */
-
-::-webkit-scrollbar{
-
-    width:8px;
-    height:8px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#F3F4F6;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#CBD5E1;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:#94A3B8;
-
-}
-
-/* ==========================================================
-   TEXT SELECTION
-========================================================== */
-
-::selection{
-
-    background:#635BFF;
-    color:#FFFFFF;
-
-}
-
-/* ==========================================================
-   PAGE LOAD
-========================================================== */
-
-.page-header{
-
-    animation:fadeUp .35s ease;
-
-}
-
-.toolbar{
-
-    animation:fadeUp .5s ease;
-
-}
-
-.table-card{
-
-    animation:fadeUp .65s ease;
-
-}
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-        transform:translateY(18px);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
-
-}
-
-/* ==========================================================
-   MODAL ANIMATION
-========================================================== */
-
-.task-modal{
-
-    animation:fadeIn .2s ease;
-
-}
-
-@keyframes fadeIn{
-
-    from{
-
-        opacity:0;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
-
-}
-
-/* ==========================================================
-   LARGE DESKTOP
-========================================================== */
-
-@media(min-width:1600px){
-
-.admin-tasks{
-
-    max-width:1600px;
-    margin:auto;
-
-}
-
-}
-
-/* ==========================================================
-   TABLET
-========================================================== */
-
-@media(max-width:992px){
-
-.admin-tasks{
-
-    gap:22px;
-
-}
-
-}
-
-/* ==========================================================
-   MOBILE
-========================================================== */
-
-@media(max-width:768px){
-
-.page-header{
-
-    gap:18px;
-
-}
-
-.toolbar{
-
-    padding:18px;
-
-}
-
-.table-card th,
-.table-card td{
-
-    white-space:nowrap;
-
-}
-
-.modal-header h2{
-
-    font-size:20px;
-
-}
-
-}
-
-/* ==========================================================
-   SMALL MOBILE
-========================================================== */
-
-@media(max-width:480px){
-
-.page-label{
-
-    font-size:11px;
-
-}
-
-.header-content h1{
-
-    font-size:22px;
-
-}
-
-.header-content p{
-
-    font-size:13px;
-
-}
-
-.task-info{
-
-    gap:10px;
-
-}
-
-.task-icon{
-
-    width:36px;
-    height:36px;
-    font-size:13px;
-
-}
-
-.action-buttons{
-
-    gap:6px;
-
-}
-
-.action-buttons button{
-
-    width:32px;
-    height:32px;
-
-}
-
-.primary-btn,
-.secondary-btn{
-
-    height:42px;
-    font-size:13px;
-
-}
 
 }

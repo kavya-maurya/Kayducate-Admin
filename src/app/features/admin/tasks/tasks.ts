@@ -34,7 +34,7 @@ export class Tasks implements OnInit {
   priorityFilter = '';
 
   // Change this to your backend URL if different
-  apiUrl = 'http://localhost:3000/api/tasks';
+  apiUrl = 'https://kayducate-api.kaylynk.tech/api/tasks/admin/tasks';
 
   constructor(
     private http: HttpClient
