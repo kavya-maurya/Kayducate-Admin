@@ -28,13 +28,13 @@ export class Login implements OnInit {
 
   onSubmit(form: FormGroup) {
       this.isLoading=true;
-     this.http.post('https://studententry-api.onrender.com/API/auth/login', this.loginForm.value).subscribe(res => {
+     this.http.post('https://kayducate-api.kaylynk.tech/', this.loginForm.value).subscribe(res => {
       console.log(res);
           localStorage.setItem('user', JSON.stringify(res));
       this.loginForm.reset();
        this.isLoading=false;
       this.isSuccess=true;
-      this.router.navigate(['/student/dashboard']);
+      this.router.navigate(['/admin/dashboard']);
     });
   }
 

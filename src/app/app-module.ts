@@ -15,6 +15,7 @@ import { NavbarAdmin } from './layouts/admin-layout/navbar-admin/navbar-admin';
 import { SidebarAdmin } from './layouts/admin-layout/sidebar-admin/sidebar-admin';
 import { AdminModule } from './features/admin/admin-module';
 import { RouterOutlet } from '@angular/router';
+import { AuthLayout } from './layouts/auth-layout/auth-layout';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RouterOutlet } from '@angular/router';
     FooterAdmin,
     NavbarAdmin,
     SidebarAdmin,
+    AuthLayout,
   ],
   imports: [
     BrowserModule,

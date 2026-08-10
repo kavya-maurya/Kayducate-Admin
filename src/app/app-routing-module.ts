@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayout } from './layouts/admin-layout/admin-layout';
+import { AuthLayout } from './layouts/auth-layout/auth-layout';
 
 
 
@@ -12,13 +13,13 @@ const routes: Routes = [
 
   {
     path: '',
-    component: AdminLayout,
+    component: AuthLayout,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('./features/admin/admin-module')
-            .then(m => m.AdminModule)
+          import('./features/auth/auth-module')
+            .then(m => m.AuthModule)
       }
        
     ]

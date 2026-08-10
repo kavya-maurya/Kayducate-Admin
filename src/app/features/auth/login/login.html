@@ -2,7 +2,9 @@
 
     <div class="login-container">
 
-        <!-- LEFT PANEL -->
+        <!-- =====================================================
+                            LEFT PANEL
+        ====================================================== -->
 
         <div class="left-panel">
 
@@ -10,47 +12,62 @@
 
             <div class="left-content">
 
-                <div class="logo">
+                <!-- BRAND -->
 
-                    <i class="fa-solid fa-graduation-cap"></i>
+                <div class="logo">
 
                     <h1>Kayducate</h1>
 
                 </div>
 
+
+                <!-- BADGE -->
+
                 <span class="badge">
 
-                    🚀 Smart Learning Platform
+                    <span>⚡</span>
+                    Admin Control Panel
 
                 </span>
 
+
+                <!-- HERO TEXT -->
+
                 <h2>
 
-                    Learn.
-                    <span>Track.</span>
+                    Manage.
+                    <span>Monitor.</span>
                     Grow.
 
                 </h2>
 
+
                 <p>
 
-                    Manage courses, attendance, assignments,
-                    progress and daily learning from one modern
-                    dashboard.
+                    Manage students, courses, attendance, tasks
+                    and academic performance from one powerful
+                    administrative dashboard.
 
                 </p>
 
-                <img src="assets/images/login.svg">
+
+                <!-- ILLUSTRATION -->
+
+            
+
+
+                <!-- STATS -->
 
                 <div class="features">
 
                     <div>
 
-                        <h3>5000+</h3>
+                        <h3>5K+</h3>
 
                         <span>Students</span>
 
                     </div>
+
 
                     <div>
 
@@ -60,11 +77,12 @@
 
                     </div>
 
+
                     <div>
 
-                        <h3>95%</h3>
+                        <h3>24/7</h3>
 
-                        <span>Success</span>
+                        <span>Control</span>
 
                     </div>
 
@@ -74,33 +92,63 @@
 
         </div>
 
-        <!-- RIGHT PANEL -->
+
+        <!-- =====================================================
+                            RIGHT PANEL
+        ====================================================== -->
 
         <div class="right-panel">
 
             <div class="login-card">
 
-                <h2>
 
-                    Welcome Back 
+                <!-- LOGIN HEADER -->
 
-                </h2>
-<!-- 
-                <p>
+                <div class="login-header">
 
-                    Login to continue your learning journey.
+                    <span class="login-label">
 
-                </p> -->
-                 <span *ngIf="isSuccess" class="success-message">
-  login successful!
-  </span>
-            
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+                        ADMIN PORTAL
 
-                    <!-- Name -->
+                    </span>
 
-                   
-                    <!-- Email -->
+                    <h2>
+
+                        Welcome Back
+
+                    </h2>
+
+                    <p class="subtitle">
+
+                        Sign in to access your Kayducate
+                        administration dashboard.
+
+                    </p>
+
+                </div>
+
+
+                <!-- SUCCESS MESSAGE -->
+
+                <span
+                    *ngIf="isSuccess"
+                    class="success-message">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Login successful!
+
+                </span>
+
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    [formGroup]="loginForm"
+                    (ngSubmit)="onSubmit(loginForm)">
+
+
+                    <!-- EMAIL -->
 
                     <div class="input-box">
 
@@ -115,15 +163,19 @@
                             <i class="fa-solid fa-envelope"></i>
 
                             <input
-                            type="email"
-                            formControlName="email"
-                            placeholder="Enter your email">
+                                type="email"
+                                formControlName="email"
+                                placeholder="Enter your email"
+                            >
 
                         </div>
 
+
                         <small
-                        *ngIf="loginForm.get('email')?.invalid &&
-                        loginForm.get('email')?.touched">
+                            *ngIf="
+                                loginForm.get('email')?.invalid &&
+                                loginForm.get('email')?.touched
+                            ">
 
                             Enter a valid email
 
@@ -131,7 +183,8 @@
 
                     </div>
 
-                    <!-- Password -->
+
+                    <!-- PASSWORD -->
 
                     <div class="input-box">
 
@@ -146,17 +199,21 @@
                             <i class="fa-solid fa-lock"></i>
 
                             <input
-                            type="password"
-                            formControlName="password"
-                            placeholder="Enter password">
+                                type="password"
+                                formControlName="password"
+                                placeholder="Enter password"
+                            >
 
                             <i class="fa-solid fa-eye"></i>
 
                         </div>
 
+
                         <small
-                        *ngIf="loginForm.get('password')?.invalid &&
-                        loginForm.get('password')?.touched">
+                            *ngIf="
+                                loginForm.get('password')?.invalid &&
+                                loginForm.get('password')?.touched
+                            ">
 
                             Password must be at least 6 characters.
 
@@ -164,70 +221,91 @@
 
                     </div>
 
+
+                    <!-- OPTIONS -->
+
                     <div class="options">
 
                         <label>
 
                             <input type="checkbox">
 
-                            Remember Me
+                            <span>
+                                Remember Me
+                            </span>
 
                         </label>
 
-                        <a routerLink="/forgot-password">
 
-                            Forgot Password?
-
-                        </a>
+                        
 
                     </div>
 
+
+                    <!-- LOGIN BUTTON -->
+
                     <button
-                    class="login-btn"
-                    type="submit"
-                    [disabled]="loginForm.invalid">
-                    <span *ngIf="!isLoading">Login</span>
-                        
-                        <span *ngIf="isLoading">Loading ...</span>
-                        
+                        class="login-btn"
+                        type="submit"
+                        [disabled]="loginForm.invalid">
+
+                        <span *ngIf="!isLoading">
+
+                            Login
+
+                        </span>
+
+                        <span *ngIf="isLoading">
+
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+
+                            Loading ...
+
+                        </span>
 
                     </button>
 
                 </form>
+
+
+                <!-- DIVIDER -->
 
                 <div class="divider">
 
                     <span>OR</span>
 
                 </div>
-<!-- 
-                <button class="social-btn">
 
-                    <i class="fa-brands fa-google"></i>
 
-                    Continue with Google
-
-                </button>
-
-                <button class="social-btn">
-
-                    <i class="fa-brands fa-microsoft"></i>
-
-                    Continue with Microsoft
-
-                </button> -->
+                <!-- REGISTER -->
 
                 <p class="register">
 
                     Don't have an account?
 
-                    <a routerLink="/auth/register">
+                    <a routerLink="/register">
 
                         Register
 
                     </a>
 
                 </p>
+
+
+                <!-- SECURITY NOTE -->
+
+                <div class="security-note">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <!-- <span>
+
+                        Secure administrative access
+
+                    </span> -->
+
+                </div>
+
 
             </div>
 
