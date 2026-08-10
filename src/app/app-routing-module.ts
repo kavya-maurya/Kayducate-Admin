@@ -32,11 +32,11 @@ const routes: Routes = [
  
   {
     path: 'admin',
-    component: AdminLayout,
+    component: AuthLayout,
 
     loadChildren: () =>
-      import('./features/admin/admin-module')
-        .then(m => m.AdminModule)
+      import('./features/auth/auth-module')
+        .then(m => m.AuthModule)
   },
 
   {
