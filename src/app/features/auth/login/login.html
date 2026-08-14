@@ -162,6 +162,7 @@
                                 type="email"
                                 formControlName="email"
                                 placeholder="Enter your email"
+                                 (input)="loginForm.get('email')?.setValue(loginForm.get('email')?.value?.toLowerCase())"
                             >
 
                         </div>
