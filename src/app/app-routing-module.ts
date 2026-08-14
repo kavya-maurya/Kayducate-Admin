@@ -24,6 +24,13 @@ const routes: Routes = [
        
     ]
   },
+  {
+    path: 'admin',
+    component: AdminLayout,
+    loadChildren: () =>
+      import('./features/admin/admin-module')
+        .then(m => m.AdminModule)
+  },
 
   
 

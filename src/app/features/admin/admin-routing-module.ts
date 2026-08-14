@@ -11,11 +11,7 @@ import { Students } from './students/students';
 
 const routes: Routes = [
 
-    {
-      path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full'
-    },
+    
   
     {
       path: 'dashboard',
